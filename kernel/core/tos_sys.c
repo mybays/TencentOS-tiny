@@ -152,7 +152,7 @@ __API__ k_err_t tos_knl_sched_unlock(void)
 
 __API__ k_err_t tos_knl_start(void)
 {
-    if (tos_knl_is_running()) {
+    if (unlikely(tos_knl_is_running())) {
         return K_ERR_KNL_RUNNING;
     }
 
@@ -198,57 +198,13 @@ __KERNEL__ k_tick_t knl_next_expires_get(void)
 
 #endif
 
-#if TOS_CFG_OBJECT_VERIFY_EN > 0u
-
-__KERNEL__ int knl_object_verify(knl_obj_t *knl_obj, knl_obj_type_t type)
-{
-    return knl_obj->type == type;
-}
-
-__KERNEL__ void knl_object_init(knl_obj_t *knl_obj, knl_obj_type_t type)
-{
-    knl_obj->type = type;
-}
-
-__KERNEL__ void knl_object_deinit(knl_obj_t *knl_obj)
-{
-    knl_obj->type = KNL_OBJ_TYPE_NONE;
-}
-
-#endif
-
-#if TOS_CFG_MMHEAP_EN > 0u
-
-__KERNEL__ void knl_object_alloc_reset(knl_obj_t *knl_obj)
-{
-    knl_obj->alloc_type = KNL_OBJ_ALLOC_TYPE_NONE;
-}
-
-__KERNEL__ void knl_object_alloc_set_dynamic(knl_obj_t *knl_obj)
-{
-    knl_obj->alloc_type = KNL_OBJ_ALLOC_TYPE_DYNAMIC;
-}
-
-__KERNEL__ void knl_object_alloc_set_static(knl_obj_t *knl_obj)
-{
-    knl_obj->alloc_type = KNL_OBJ_ALLOC_TYPE_STATIC;
-}
-
-__KERNEL__ int knl_object_alloc_is_dynamic(knl_obj_t *knl_obj)
-{
-    return knl_obj->alloc_type == KNL_OBJ_ALLOC_TYPE_DYNAMIC;
-}
-
-__KERNEL__ int knl_object_alloc_is_static(knl_obj_t *knl_obj)
-{
-    return knl_obj->alloc_type == KNL_OBJ_ALLOC_TYPE_STATIC;
-}
-
-#endif
-
 __KERNEL__ void knl_sched(void)
 {
     TOS_CPU_CPSR_ALLOC();
+
+    if (unlikely(!tos_knl_is_running())) {
+        return;
+    }
 
     if (knl_is_inirq()) {
         return;
