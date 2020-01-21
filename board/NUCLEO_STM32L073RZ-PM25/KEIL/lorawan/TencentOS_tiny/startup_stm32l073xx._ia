@@ -1,0 +1,6 @@
+--cpu Cortex-M0+ -g --apcs=interwork --pd "__MICROLIB SETA 1"
+-I.\RTE\_TencentOS_tiny
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include
+-IC:\Keil_v5\ARM\PACK\Keil\STM32L0xx_DFP\2.0.1\Drivers\CMSIS\Device\ST\STM32L0xx\Include
+--pd "__UVISION_VERSION SETA 526" --pd "_RTE_ SETA 1" --pd "STM32L073xx SETA 1"
+--list startup_stm32l073xx.lst --xref -o tencentos_tiny\startup_stm32l073xx.o --depend tencentos_tiny\startup_stm32l073xx.d "startup_stm32l073xx.s"

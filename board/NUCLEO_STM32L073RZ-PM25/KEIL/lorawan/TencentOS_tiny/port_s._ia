@@ -1,0 +1,6 @@
+--cpu Cortex-M0+ -g --apcs=interwork --pd "__MICROLIB SETA 1"
+-I.\RTE\_TencentOS_tiny
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include
+-IC:\Keil_v5\ARM\PACK\Keil\STM32L0xx_DFP\2.0.1\Drivers\CMSIS\Device\ST\STM32L0xx\Include
+--pd "__UVISION_VERSION SETA 526" --pd "_RTE_ SETA 1" --pd "STM32L073xx SETA 1"
+--list port_s.lst --xref -o tencentos_tiny\port_s.o --depend tencentos_tiny\port_s.d "..\..\..\..\arch\arm\arm-v7m\cortex-m0+\armcc\port_s.S"
