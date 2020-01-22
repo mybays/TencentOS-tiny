@@ -20,9 +20,9 @@ TARGET = TencentOS_tiny
 # building variables
 ######################################
 # debug build?
-DEBUG = 0
+DEBUG = 1
 # optimization
-OPT = -Os
+OPT = -Og
 
 TOP_DIR = ../../../../
 #######################################
@@ -52,7 +52,6 @@ CMSIS_SRC =  \
 HAL_DRIVER_SRC =  \
 		$(TOP_DIR)/board/NUCLEO_STM32L073RZ-PM25/BSP/Src/main.c \
 		$(TOP_DIR)/examples/LoRaWANPM25/lora_demo.c \
-		$(TOP_DIR)/board/NUCLEO_STM32L073RZ-PM25/BSP/HardWare/HTS221/HTS221.c \
 		$(TOP_DIR)/devices/rhf76_lora/RHF76.c \
 		$(TOP_DIR)/net/lora_module_wrapper/lora_module_wrapper.c \
 		$(TOP_DIR)/net/at/src/tos_at.c \
@@ -61,7 +60,6 @@ HAL_DRIVER_SRC =  \
 		$(TOP_DIR)/platform/hal/st/stm32l0xx/src/tos_hal_uart.c \
 		$(TOP_DIR)/board/NUCLEO_STM32L073RZ-PM25/BSP/gpio.c \
 		$(TOP_DIR)/board/NUCLEO_STM32L073RZ-PM25/BSP/usart.c \
-		$(TOP_DIR)/board/NUCLEO_STM32L073RZ-PM25/BSP/i2c.c \
 		$(TOP_DIR)/board/NUCLEO_STM32L073RZ-PM25/BSP/stm32l0xx_it.c \
 		$(TOP_DIR)/board/NUCLEO_STM32L073RZ-PM25/BSP/stm32l0xx_hal_msp.c \
 		$(TOP_DIR)/board/NUCLEO_STM32L073RZ-PM25/BSP/mcu_init.c \

@@ -35,7 +35,7 @@ void board_init(void)
   //MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_USART5_UART_Init();
-  MX_I2C1_Init();
+  //MX_I2C1_Init();
 
 }
 
